@@ -1,0 +1,19 @@
+.green {
+    background-color: green;
+    width: 100%;
+}
+
+.red {
+    background-color: red;
+}
+
+.image-box {
+    height: 300px;
+    width: 300px;
+    border: 3px solid black;
+    margin: 0 auto;
+}
+
+.animal-buttons {
+    text-align: center;
+}
