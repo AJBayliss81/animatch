@@ -13,9 +13,13 @@ function selectImage() {
   var randomPic = animalArray[randomNum]; // take pic from image array based on random no.
 
   gameArray.push(randomNum);
+
+  
+  if (gameArray.length == 1) {
+
   $(".button").attr("disabled", true).css("background-color", "red");
   $(".image-box").html(
-    `<img class="temp-image align-items-center justify-content-center" src="${randomPic}"/>`
+    `<img class="temp-image align-items-center justify-content-center" src="${animalArray[randomNum]}"/>`
   ); // generate new element for image
   $(".temp-image").css({
     width: "350px",
@@ -29,6 +33,10 @@ function selectImage() {
     $(".button").attr("disabled", false).css("background-color", "yellow");
   }, 3000);
   
+} else {
+    // for (var i = 0; i < gameArray.length; ++i)
+    return gameArray.forEach(selectImage());
+  }
 
 };
 
@@ -67,4 +75,5 @@ function nextLevel() {
         alert ("Welcome to the next level!");
     }
 };
+
 
