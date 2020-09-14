@@ -1,22 +1,42 @@
+/*-------------- Containers -------------*/
+
 .game-container {
     background-color: rgb(0, 128, 128);
     width: 100%;
 }
 
+.container {
+    margin-top: 50px;
+}
 .red {
     background-color: red;
 }
 
 .image-box {
-    height: 500px;
-    width: 500px;
+    height: 40rem;
+    width: 100%;
     border: 3px solid black;
     margin: 25px auto;
+    padding: 0;
     overflow: hidden;
 }
 
-.container {
-    margin-top: 50px;
+.temp-image {
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+}
+
+
+.instructions {
+    font-size: 1.2rem;
+    overflow: hidden;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+}
+
+.heading {
+    font-size: 1.6rem;
 }
 
 /*-------------- Buttons -------------*/
@@ -29,3 +49,11 @@
     background-color: orange;
     margin: 10px;
 }
+
+/*-------------- Media Queries -------------*/
+
+@media (max-width: 992px) {
+     .instructions{
+         margin-top: 3rem;
+     } 
+     }

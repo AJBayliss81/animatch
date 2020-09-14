@@ -21,6 +21,13 @@ let animalArray = [
   "assets/images/goat.jpg",
 ]; // image array
 
+let animalToNumberMapper = {
+    "cat": 0,
+    "dog": 1,
+    "fox": 2,
+    "goat": 3,
+}
+
 let levelCounter = 0;
 let points = 0;
 
@@ -28,21 +35,14 @@ function selectImage() {
   var randomNum = Math.floor(Math.random() * animalArray.length); // random no. generator
   gameArray.push(randomNum);
 
-  var randomPic = animalArray[randomNum]; // take pic from image array based on random no.
+  let randomPic = animalArray[randomNum]; // generate image array based on random no.
 
-  $(".image-box").html(
-    `<img class="temp-image align-items-center justify-content-center" src="${randomPic}"/>`
-  ); // generate new element for image
-  $(".temp-image").css({
-    width: "500px",
-    height: "500px",
-    "object-fit": "cover",
-  }); // change css to fit pic inside image box
+  $(".temp-image").attr("src", function() { return randomPic}).show(); // show image
 
   // timer
 
   setTimeout(() => {
-    $(".temp-image").remove(); // remove img element
+    $(".temp-image").attr("src", "").hide(); // hide image and clear
   }, 3000);
 }
 
@@ -74,20 +74,8 @@ function imageReel() {
 }
 
 // button click registers
-function cat() {
-  playerArray.push(0);
-}
-
-function dog() {
-  playerArray.push(1);
-}
-
-function fox() {
-  playerArray.push(2);
-}
-
-function goat() {
-  playerArray.push(3);
+function playerChoice(animal) {
+    playerArray.push(animalToNumberMapper[animal]);
 }
 
 // check game array matches player array
@@ -114,9 +102,10 @@ function nextLevel() {
     alert("Welcome to the next level!");
     $(".button").attr("disabled", true).css("background-color", "red");
     points += (levelCounter * gameArray.length * 10);
-    console.log(points);
   }
 }
+
+
 
 // function updateScoreboard() {
 //     if(points > 0) {

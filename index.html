@@ -15,34 +15,73 @@
   </head>
 
   <body>
-    <div class="container h-100">
-      <div class="row my-auto">
+    <div class="container-fluid text-center h-100">
+        <h1>Animatch</h1>
+     
+      <div class="row">
+        <div class="col-lg-2">
+          <h3 class="instructions heading">Instructions</h3>
+          <p class="instructions">
+            Hi and welcome to Animatch, a memory test game for all ages. The
+            objective of the game is to remember the sequence of images. After
+            each sequence the buttons will be enabled for you to input the
+            correct order. Once you have finished click the "Check" button to
+            see if you were right!
+          </p>
+        </div>
         <!-- Game container -->
-        <div class="col-md-9 my-auto game-container text-center">
-          <h2>Animatch</h2>
-          <div class="image-box text-center">Box to display images</div>
-          <div class="button-container text-center">
-            <button onclick="imageReel()" id="start" class="btn">Start</button>
-            <button onclick="nextLevel()" id="check" class="button btn" disabled>Check</button>
+        <div class="col-lg-8 my-auto game-container text-center">
+          <div class="image-box col-lg-9 text-center">
+            <img class="temp-image" />
           </div>
           <div class="button-container text-center">
-            <button onclick="cat()" id="cat" class="button btn" disabled>
-              Cat button<i class="flaticon-love-and-romance"></i>
+            <button onclick="imageReel()" id="start" class="btn">Start</button>
+            <button
+              onclick="nextLevel()"
+              id="check"
+              class="button btn"
+              disabled
+            >
+              Check
             </button>
-            <button onclick="dog()" id="dog" class="button btn" disabled>
-              Dog button<i class="flaticon-animals"></i>
+          </div>
+          <div class="button-container text-center">
+            <button
+              onclick="playerChoice('cat')"
+              id="cat"
+              class="button btn"
+              disabled
+            >
+              Cat <i class="flaticon-love-and-romance"></i>
             </button>
-            <button onclick="fox()" id="fox" class="button btn" disabled>
-              Fox button<i class="flaticon-arctic-fox"></i>
+            <button
+              onclick="playerChoice('dog')"
+              id="dog"
+              class="button btn"
+              disabled
+            >
+              Dog <i class="flaticon-animals"></i>
             </button>
-            <button onclick="goat()" id="goat" class="button btn" disabled>
-              Goat button<i class="flaticon-goat"></i>
+            <button
+              onclick="playerChoice('fox')"
+              id="fox"
+              class="button btn"
+              disabled
+            >
+              Fox <i class="flaticon-arctic-fox"></i>
+            </button>
+            <button
+              onclick="playerChoice('goat')"
+              id="goat"
+              class="button btn"
+              disabled
+            >
+              Goat <i class="flaticon-goat"></i>
             </button>
           </div>
         </div>
         <!-- Scoreboard container -->
-        <div class="col-md-3 my-auto">
-        <p class="text-center">Hi and welcome to Animatch, a memory test game for all ages. The objective of the game is to remember the sequence of images. After each sequence the buttons will be enabled for you to input the correct order. Once you have finished click the "Check" button to see if you were right!</p>
+        <div class="col-lg-2 my-auto">
           <div class="scoreboard text-center">
             <h3>Scoreboard</h3>
             <table class="table table-striped table-hover">
