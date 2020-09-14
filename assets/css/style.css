@@ -1,5 +1,5 @@
-.green {
-    background-color: green;
+.game-container {
+    background-color: rgb(0, 128, 128);
     width: 100%;
 }
 
@@ -8,10 +8,24 @@
 }
 
 .image-box {
-    height: 350px;
-    width: 350px;
+    height: 500px;
+    width: 500px;
     border: 3px solid black;
-    margin: 0 auto;
+    margin: 25px auto;
+    overflow: hidden;
 }
 
+.container {
+    margin-top: 50px;
+}
 
+/*-------------- Buttons -------------*/
+
+.button-container {
+    margin: 25px;
+}
+
+.btn { 
+    background-color: orange;
+    margin: 10px;
+}
