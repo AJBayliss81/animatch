@@ -1,14 +1,6 @@
 /*----- Storage -----*/
 
-if (typeof (Storage) !== "undefined") {
-    $("#1st").text(localStorage.first);
-    $("#2nd").text(localStorage.second);
-    $("#3rd").text(localStorage.third);
-    $("#4th").text(localStorage.fourth);
-    $("#5th").text(localStorage.fifth);
-} else {
-    alert("<h5>Unable to save scores with current browser</h5>");
-}
+
 
 /*----- Global variables -----*/
 
@@ -28,31 +20,57 @@ let animalToNumberMapper = {
     "goat": 3,
 }
 
+let timer;
 let levelCounter = 0;
 let points = 0;
 
+/*----- Texillate -----*/
+
+$(function() {
+$("#title").textillate({
+    
+    in: {
+        effect: "rollIn",
+        delay: 150,
+        delayScale: 2.0,
+        shuffle: true,
+    },
+    out: {
+        effect: "wobble",
+        delay: 150,
+        delayScale: 1.0,
+        shuffle: true,
+    },
+    loop: true,
+});
+});
+
+/*----- Choose image -----*/
+
 function selectImage() {
-  var randomNum = Math.floor(Math.random() * animalArray.length); // random no. generator
+  let randomNum = Math.floor(Math.random() * animalArray.length); 
   gameArray.push(randomNum);
 
-  let randomPic = animalArray[randomNum]; // generate image array based on random no.
+  let randomPic = animalArray[randomNum]; 
 
-  $(".temp-image").attr("src", function() { return randomPic}).show(); // show image
+  $(".temp-image").attr("src", function() { return randomPic}).show(); 
 
   // timer
 
-  setTimeout(() => {
+  timer = setTimeout(() => {
     $(".temp-image").attr("src", "").hide(); // hide image and clear
   }, 3000);
 }
+
+/*----- Main game -----*/
 
 function imageReel() {
   if (levelCounter == 0) {
     selectImage();
     levelCounter++;
-    $("#start").attr("disabled", true).css("background-color", "red");
+    $("#start").attr("disabled", true).css("background-color", "#B54D40");
     setTimeout(() => {
-      $(".button").attr("disabled", false).css("background-color", "yellow");
+      $(".button").attr("disabled", false).css("background-color", "#68A357");
     }, 3000);
   } else {
     gameArray.splice(0);
@@ -65,45 +83,62 @@ function imageReel() {
       }, delay);
     }
     recall(selectImage, levelCounter, 3500);
-    $("#start").attr("disabled", true).css("background-color", "red");
+    $("#start").attr("disabled", true).css("background-color", "#B54D40");
     setTimeout(() => {
-      $(".button").attr("disabled", false).css("background-color", "yellow");
+      $(".button").attr("disabled", false).css("background-color", "#68A357");
     }, 3000 * levelCounter);
   }
   
 }
 
-// button click registers
+/*----- Button click registers -----*/ 
+
 function playerChoice(animal) {
     playerArray.push(animalToNumberMapper[animal]);
 }
 
-// check game array matches player array
+/*----- Game reset and clear timer -----*/ 
+
+function resetGame() {
+    clearTimeout(timer);
+    $(".temp-image").attr("src", "").hide()
+    playerArray.splice(0);
+    gameArray.splice(0);
+    levelCounter = 0;
+    $("#start").attr("disabled", false).css("background-color", "#68A357");
+    $(".button").attr("disabled", true).css("background-color", "#B54D40");
+
+}
+
+/*----- Check game array matches player array -----*/ 
+
 function checkArrays() {
   if (gameArray.length !== playerArray.length) return false;
   for (var i = 0; i < gameArray.length; ++i) {
     if (gameArray[i] !== playerArray[i]) return false;
   }
-  $("#start").attr("disabled", false).css("background-color", "yellow");
+  $("#start").attr("disabled", false).css("background-color", "#68A357");
 
   return true;
 }
 
-// check the 2 arrays match to then progress to next level
+/*----- Check the 2 arrays match to then progress to next level -----*/ 
+
 function nextLevel() {
   if (checkArrays() !== true) {
     playerArray.splice(0);
     alert("Sorry, better luck next time!");
-    $(".button").attr("disabled", true).css("background-color", "red");
-    $("#start").attr("disabled", false).css("background-color", "yellow");
+    $(".button").attr("disabled", true).css("background-color", "#B54D40");
+    $("#start").attr("disabled", false).css("background-color", "#68A357");
     levelCounter = 0;
   } else {
     playerArray.splice(0);
     alert("Welcome to the next level!");
-    $(".button").attr("disabled", true).css("background-color", "red");
+    $(".button").attr("disabled", true).css("background-color", "#B54D40");
     points += (levelCounter * gameArray.length * 10);
   }
 }
+
 
 
 

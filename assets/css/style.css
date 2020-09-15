@@ -1,24 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Raleway:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+
+body {
+    background: url("../images/main.jpg") no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Lora', serif;
+}
+
 /*-------------- Containers -------------*/
 
 .game-container {
-    background-color: rgb(0, 128, 128);
-    width: 100%;
+    background-color: #CBB790;
+    border-radius: 5px;
+    border: 5px solid #6F5B34;
+    width: 100%;   
 }
 
 .container {
     margin-top: 50px;
 }
-.red {
-    background-color: red;
-}
 
 .image-box {
-    height: 40rem;
+    height: 60vh;
     width: 100%;
     border: 3px solid black;
-    margin: 25px auto;
+    margin: 1.2rem auto;
     padding: 0;
     overflow: hidden;
+    
 }
 
 .temp-image {
@@ -27,6 +40,34 @@
     object-fit: cover;
 }
 
+/*-------------- Modals -------------*/
+
+.modal-content {
+    background-color: #CBB790;
+    border: 5px solid #6F5B34;
+    border-radius: 10px;
+}
+
+/*-------------- Text/Fonts -------------*/
+
+#title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 4.2rem;
+    color: #FBB637;
+    visibility: hidden;
+    -webkit-text-stroke: 1px #B54D40;
+   text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+
+#username {
+    color: #4C7740;
+    margin: 0.5rem 0 0 0;
+}
 
 .instructions {
     font-size: 1.2rem;
@@ -46,8 +87,21 @@
 }
 
 .btn { 
-    background-color: orange;
+    background-color: #68A357;
     margin: 10px;
+    white-space: normal;
+}
+
+.button {
+    background-color: #B54D40;
+}
+
+#instructions-button {
+    float: left;
+}
+
+#scoreboard-button {
+    float: right;
 }
 
 /*-------------- Media Queries -------------*/
@@ -57,3 +111,17 @@
          margin-top: 3rem;
      } 
      }
+
+@media (max-width: 576px) {
+    .button-container {
+        margin: 15px;
+    }
+
+    #instructions-button {
+        display: none;
+    }
+
+    #scoreboard-button {
+        display: none;
+    }
+}
