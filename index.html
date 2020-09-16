@@ -21,7 +21,7 @@
 
 			<!-- Game container -->
 			<div class="col-lg-8 my-auto game-container text-center">
-            <h3 id="username">Welcome</h3>
+            <h3 class="welcome">Welcome <span id="username"></span></h3>
 				<div class="image-box col-lg-9 text-center">
 					<img class="temp-image" />
           </div>
@@ -33,7 +33,7 @@
 						<button onclick="imageReel()" id="start" class="btn">Start</button>
 						<button onclick="nextLevel()" id="check" class="button btn" disabled>Check</button>
 						<div onclick="resetGame()" id="reset" class="btn">Reset</div>
-						<button type="button" id="scoreboard-button" class="btn" data-toggle="modal" data-target="#scoreboardModal">
+						<button type="button" id="scoreboard-button" class="btn" data-toggle="modal" data-target="#scoreboardModal" onclick="getScores()">
   Scoreboard
 </button>
 					</div>
@@ -111,28 +111,34 @@
 									<thead>
 										<tr>
 											<th scope="col">Place</th>
-											<th scope="col">Score</th>
+											<th scope="col">Username</th>
+                                            <th scope="col">Score</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr id="1st">
 											<th scope="row">1st</th>
-											<td>Score</td>
+											<td>Username</td>
+                                            <td>Score</td>
 										</tr>
 										<tr id="2nd">
 											<th scope="row">2nd</th>
+                                            <td>Username</td>
 											<td>Score</td>
 										</tr>
 										<tr id="3rd">
 											<th scope="row">3rd</th>
+                                            <td>Username</td>
 											<td>score</td>
 										</tr>
 										<tr id="4th">
 											<th scope="row">4th</th>
+                                            <td>Username</td>
 											<td>score</td>
 										</tr>
 										<tr id="5th">
 											<th scope="row">5th</th>
+                                            <td>Username</td>
 											<td>score</td>
 										</tr>
 									</tbody>
@@ -148,17 +154,17 @@
 		</div>
 
         <!-- Username modal -->
-<button type="button" class="btn" data-toggle="modal" data-target=".username-modal">Small modal</button>
 
 <div class="modal fade username-modal" tabindex="-1" role="document" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
-      <form>
+      <form id="form">
           <div class="form-group w-100 text-center">
             <label for="username" class="col-form-label">Enter username:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input type="text" class="form-control" id="usernameInput">
             <div class="w-100 text-center">
-								<button onclick="" type="button" class="btn modal-close" data-dismiss="modal">Enter</button>
+            <span id="alert"></span>
+								<input type="submit" value="Submit" class="btn">
 							</div>
           </div>
         </form>
