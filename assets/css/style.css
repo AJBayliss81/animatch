@@ -90,6 +90,7 @@ body {
     background-color: #68A357;
     margin: 10px;
     white-space: normal;
+    border: 2px solid #6F5B34;
 }
 
 .button {

@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/flaticon.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"  />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
 	<title>Animatch</title>
@@ -21,7 +21,7 @@
 
 			<!-- Game container -->
 			<div class="col-lg-8 my-auto game-container text-center">
-            <h3 class="welcome">Welcome <span id="username"></span></h3>
+				<h3 class="welcome">Welcome <span id="username"></span></h3>
 				<div class="image-box col-lg-9 text-center">
 					<img class="temp-image" />
           </div>
@@ -112,33 +112,33 @@
 										<tr>
 											<th scope="col">Place</th>
 											<th scope="col">Username</th>
-                                            <th scope="col">Score</th>
+											<th scope="col">Score</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr id="1st">
 											<th scope="row">1st</th>
 											<td>Username</td>
-                                            <td>Score</td>
+											<td>Score</td>
 										</tr>
 										<tr id="2nd">
 											<th scope="row">2nd</th>
-                                            <td>Username</td>
+											<td>Username</td>
 											<td>Score</td>
 										</tr>
 										<tr id="3rd">
 											<th scope="row">3rd</th>
-                                            <td>Username</td>
+											<td>Username</td>
 											<td>score</td>
 										</tr>
 										<tr id="4th">
 											<th scope="row">4th</th>
-                                            <td>Username</td>
+											<td>Username</td>
 											<td>score</td>
 										</tr>
 										<tr id="5th">
 											<th scope="row">5th</th>
-                                            <td>Username</td>
+											<td>Username</td>
 											<td>score</td>
 										</tr>
 									</tbody>
@@ -153,24 +153,44 @@
 			</div>
 		</div>
 
-        <!-- Username modal -->
+		<!-- Username modal -->
 
-<div class="modal fade username-modal" tabindex="-1" role="document" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <form id="form">
-          <div class="form-group w-100 text-center">
-            <label for="username" class="col-form-label">Enter username:</label>
-            <input type="text" class="form-control" id="usernameInput">
-            <div class="w-100 text-center">
-            <span id="alert"></span>
+		<div class="modal fade username-modal" tabindex="-1" role="document" aria-labelledby="usernameModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-sm">
+				<div class="modal-content">
+					<form id="form">
+						<div class="form-group w-100 text-center">
+							<label for="username" class="col-form-label">Enter username:</label>
+							<input type="text" class="form-control" id="usernameInput">
+							<div class="w-100 text-center">
+								<span id="inputAlert"></span>
 								<input type="submit" value="Submit" class="btn">
 							</div>
-          </div>
-        </form>
-    </div>
-  </div>
-</div>
+							</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Alerts modal -->
+
+		<div class="modal fade alerts-modal" tabindex="-1" role="document" aria-labelledby="alertsModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-sm">
+				<div class="modal-content">
+						<div class="w-100 text-center">
+							<span id="alerts"></span>
+							<div class="w-100 text-center">
+								<button type="button" class="btn modal-close" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+
 
 </body>
 
@@ -180,8 +200,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js" integrity="sha512-f+oBYjKYemdim4hxvBI29tx1aphY5ffbTlSyN+B1u8YEOAarGu4rBJ++cVzedldrScbJ1Po/rArrrgAFpOXcvg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.js" integrity="sha512-W34u50glG4BGJQE61qQBXoc10jT2+Ur0HTWV5/BmEPJnf6TMsnTT/5daQKXkay+uPxv86a2S42Pl4aDdnkE5mA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"
+	integrity="sha512-f+oBYjKYemdim4hxvBI29tx1aphY5ffbTlSyN+B1u8YEOAarGu4rBJ++cVzedldrScbJ1Po/rArrrgAFpOXcvg=="
+	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.js"
+	integrity="sha512-W34u50glG4BGJQE61qQBXoc10jT2+Ur0HTWV5/BmEPJnf6TMsnTT/5daQKXkay+uPxv86a2S42Pl4aDdnkE5mA=="
+	crossorigin="anonymous"></script>
 <script src="assets/js/animatch.js" type="text/javascript"></script>
 
 </html>

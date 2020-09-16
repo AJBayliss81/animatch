@@ -36,6 +36,7 @@ $(function () {
 
 /*----- Global variables -----*/
 
+let name = sessionStorage.getItem("username");
 let gameArray = []; // array to push randomly generated numbers to
 let playerArray = []; // array to store player inputs and to match with gameArray
 let animalArray = [
@@ -55,8 +56,6 @@ let animalToNumberMapper = {
 let timer;
 let levelCounter = 0;
 let points = 0;
-var scores = [{ name: "", score: "" }];
-var name = [];
 
 
 
@@ -129,11 +128,17 @@ function imageReel() {
   }
 }
 
-/*----- Button click registers -----*/
+/*----- Button functions -----*/
 
 function playerChoice(animal) {
   playerArray.push(animalToNumberMapper[animal]);
 }
+
+$(".btn").hover(function() {
+    $(this).css("background-color", "#FBBE4B");
+}, function(){
+    $(this).css("background-color", "#68A357");
+});
 
 /*----- Game reset and clear timer -----*/
 
@@ -164,16 +169,21 @@ function checkArrays() {
 function nextLevel() {
   if (checkArrays() !== true) {
     playerArray.splice(0);
-    alert("Sorry, better luck next time!");
+    gameArray.splice(0);
+    $(".alerts-modal").modal();
+    $("#alerts").text("Sorry, better luck next time!").css("font-size", "2rem");
     $(".button").attr("disabled", true).css("background-color", "#B54D40");
     $("#start").attr("disabled", false).css("background-color", "#68A357");
-    levelCounter = 0;
     setScore();
-  } else {
-    playerArray.splice(0);
-    alert("Welcome to the next level!");
-    $(".button").attr("disabled", true).css("background-color", "#B54D40");
+    levelCounter = 0;
+    points = 0;
+  } else {      
     points += levelCounter * gameArray.length * 10;
+    playerArray.splice(0);    
+    gameArray.splice(0);
+    $(".alerts-modal").modal();
+    $("#alerts").text("Welcome to the next level!").css("font-size", "2rem");
+    $(".button").attr("disabled", true).css("background-color", "#B54D40");
   }
 }
 
@@ -182,35 +192,40 @@ function nextLevel() {
 $("#form").submit(function (event) {
   if ($("#usernameInput").val() !== "") {
     let value = document.getElementById("usernameInput").value;
-    localStorage.setItem("username", value);
-    $("#alert").text("Updated...").show();
-    console.log(name);
-  }
-
-  $("#alert").text("Not valid!").show().fadeOut(1000);
+    sessionStorage.setItem("username", value);
+    $("#inputAlert").text("Updated...").show();
+  } else {
+  $("#inputAlert").text("Not valid!").show().fadeOut(1000);
   event.preventDefault();
+  }
 });
 
 $(function () {
-  if (name.length === 0) {
+  if (name == "" || name == null) {
     $(".username-modal").modal();
+  } else {
+  $("#username").text(name);
   }
-  name = localStorage.getItem("username");
 });
 
 /*----- Scoreboard -----*/
 
 function setScore() {
-  localStorage.setItem("scores", JSON.stringify(scores));
-}
+    let scores = [{ "username": name, "score": points }];
+    let oldScores = JSON.parse(localStorage.getItem("scores")) || [];
+
+    oldScores.push(scores)
+    
+    localStorage.setItem("scores", JSON.stringify(oldScores));
+    }
 
 function getScores() {
-//   var scores = JSON.parse(localStorage.getItem("scores"));
-//   scores.sort(function (first, second, third, fourth, fifth) {
-//     return (
-//       fifth.score - fourth.score - third.score - second.score - first.score
-//     );
-//   });
+  var scores = JSON.parse(localStorage.getItem("scores"));
+  scores.sort(function (first, second, third, fourth, fifth) {
+    return (
+      fifth.score - fourth.score - third.score - second.score - first.score
+    );
+  });
   if (scores.score == undefined || scores.length < 5) {
     $("#1st").html(`<th scope="row">1st</th> <td></td> <td></td>`);
     $("#2nd").html(`<th scope="row">2nd</th> <td></td> <td></td>`);
