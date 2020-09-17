@@ -106,8 +106,8 @@
 							<div class="modal-header">
 								<h3 class="modal-title w-100 text-center" id="scoreboardModalTitle">Scoreboard</h3>
 							</div>
-							<div class="modal-body">
-								<table class="table table-striped table-hover">
+							<div class="modal-body highscore">
+								<table id="highscore" class="table table-striped table-hover">
 									<thead>
 										<tr>
 											<th scope="col">Place</th>
@@ -116,30 +116,30 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr id="1st">
+										<tr>
 											<th scope="row">1st</th>
-											<td>Username</td>
-											<td>Score</td>
+											<td class="1st usernameData"></td>
+											<td class="1st scoreData"></td>
 										</tr>
-										<tr id="2nd">
+										<tr>
 											<th scope="row">2nd</th>
-											<td>Username</td>
-											<td>Score</td>
+											<td class="2nd usernameData"></td>
+											<td class="2nd scoreData"></td>
 										</tr>
-										<tr id="3rd">
+										<tr>
 											<th scope="row">3rd</th>
-											<td>Username</td>
-											<td>score</td>
+											<td class="3rd usernameData"></td>
+											<td class="3rd scoreData"></td>
 										</tr>
-										<tr id="4th">
+										<tr>
 											<th scope="row">4th</th>
-											<td>Username</td>
-											<td>score</td>
+											<td class="4th usernameData"></td>
+											<td class="4th scoreData"></td>
 										</tr>
-										<tr id="5th">
+										<tr>
 											<th scope="row">5th</th>
-											<td>Username</td>
-											<td>score</td>
+											<td class="5th usernameData"></td>
+											<td class="5th scoreData"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -182,7 +182,7 @@
 						<div class="w-100 text-center">
 							<span id="alerts"></span>
 							<div class="w-100 text-center">
-								<button type="button" class="btn modal-close" data-dismiss="modal">Close</button>
+								<button id="responsive" type="button" class="btn modal-close" data-dismiss="modal">Close</button>
 							</div>
 						</div>
 					</div>

@@ -56,8 +56,8 @@ let animalToNumberMapper = {
 let timer;
 let levelCounter = 0;
 let points = 0;
-
-
+let scores = { username: name, score: points };
+let sortedScores = [];
 
 /*----- Textillate -----*/
 
@@ -134,11 +134,14 @@ function playerChoice(animal) {
   playerArray.push(animalToNumberMapper[animal]);
 }
 
-$(".btn").hover(function() {
+$(".btn").hover(
+  function () {
     $(this).css("background-color", "#FBBE4B");
-}, function(){
+  },
+  function () {
     $(this).css("background-color", "#68A357");
-});
+  }
+);
 
 /*----- Game reset and clear timer -----*/
 
@@ -177,9 +180,9 @@ function nextLevel() {
     setScore();
     levelCounter = 0;
     points = 0;
-  } else {      
+  } else {
     points += levelCounter * gameArray.length * 10;
-    playerArray.splice(0);    
+    playerArray.splice(0);
     gameArray.splice(0);
     $(".alerts-modal").modal();
     $("#alerts").text("Welcome to the next level!").css("font-size", "2rem");
@@ -195,8 +198,8 @@ $("#form").submit(function (event) {
     sessionStorage.setItem("username", value);
     $("#inputAlert").text("Updated...").show();
   } else {
-  $("#inputAlert").text("Not valid!").show().fadeOut(1000);
-  event.preventDefault();
+    $("#inputAlert").text("Not valid!").show().fadeOut(1000);
+    event.preventDefault();
   }
 });
 
@@ -204,52 +207,63 @@ $(function () {
   if (name == "" || name == null) {
     $(".username-modal").modal();
   } else {
-  $("#username").text(name);
+    $("#username").text(name);
   }
 });
 
 /*----- Scoreboard -----*/
 
 function setScore() {
-    let scores = [{ "username": name, "score": points }];
-    let oldScores = JSON.parse(localStorage.getItem("scores")) || [];
+  var scores = { username: name, score: points };
+  let oldScores = JSON.parse(localStorage.getItem("scores")) || [];
 
-    oldScores.push(scores)
-    
-    localStorage.setItem("scores", JSON.stringify(oldScores));
-    }
+  oldScores.push(scores);
+
+  localStorage.setItem("scores", JSON.stringify(oldScores));
+}
 
 function getScores() {
-  var scores = JSON.parse(localStorage.getItem("scores"));
-  scores.sort(function (first, second, third, fourth, fifth) {
-    return (
-      fifth.score - fourth.score - third.score - second.score - first.score
-    );
+  let oldScores = JSON.parse(localStorage.getItem("scores")) || [];
+  sortedScores = oldScores.sort(function (first, last) {
+    return last.score - first.score;
   });
-  if (scores.score == undefined || scores.length < 5) {
-    $("#1st").html(`<th scope="row">1st</th> <td></td> <td></td>`);
-    $("#2nd").html(`<th scope="row">2nd</th> <td></td> <td></td>`);
-    $("#3rd").html(`<th scope="row">3rd</th> <td></td> <td></td>`);
-    $("#4th").html(`<th scope="row">4th</th> <td></td> <td></td>`);
-    $("#5th").html(`<th scope="row">5th</th> <td></td> <td></td>`);
-  } else {
-    $("#1st").text(first.score);
-    $("#2nd").text(second.score);
-    $("#3rd").text(third.score);
-    $("#4th").text(fourth.score);
-    $("#5th").text(fifth.score);
+
+  for (var i = 0; i < sortedScores.length; i++) {
+    if (sortedScores[0] !== undefined) {
+      $(".1st.usernameData").text(sortedScores[0].username);
+      $(".1st.scoreData").text(sortedScores[0].score);
+    }
+    if (sortedScores[1] !== undefined) {
+      $(".2nd.usernameData").text(sortedScores[1].username);
+      $(".2nd.scoreData").text(sortedScores[1].score);
+    }
+    if (sortedScores[2] !== undefined) {
+      $(".3rd.usernameData").text(sortedScores[2].username);
+      $(".3rd.scoreData").text(sortedScores[2].score);
+    }
+    if (sortedScores[3] !== undefined) {
+      $(".4th.usernameData").text(sortedScores[3].username);
+      $(".4th.scoreData").text(sortedScores[3].score);
+    }
+    if (sortedScores[4] !== undefined) {
+      $(".5th.usernameData").text(sortedScores[4].username);
+      $(".5th.scoreData").text(sortedScores[4].score);
+    } else if (sortedScores[i] == undefined) {
+      $(".usernameData").text("");
+      $(".scoreData").text("");
+    }
+  } 
+}
+
+function myFunction(x) {
+  if (x.matches) {
+    $("#responsive").on("click", function () {
+        getScores();
+      $("#scoreboardModal").modal();
+    });
   }
 }
 
-// function submitUsername() {
-//     usernameValue = $("#usernameInput").value;
-//     localStorage.setItem("username", usernameValue);
-//     console.log(username);
-// }
-
-// function updateScoreboard() {
-//     if(points > 0) {
-//         if (points > localStorage.first || localStorage.first == undefined)
-//         $("#1st").text("<td>${points}</td>");
-//     }
-// }
+var x = window.matchMedia("(max-width: 992px)");
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction) // Attach listener function on state changes
