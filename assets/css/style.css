@@ -125,4 +125,8 @@ body {
     #scoreboard-button {
         display: none;
     }
+
+    #title {
+        font-size: 2rem;
+    }
 }
