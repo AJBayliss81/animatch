@@ -4,7 +4,7 @@
 
 A memory test game to match a sequence of images.
 
-!["Example responsivity"](assets/images/.png "Example responsivity")
+!["Example responsivity"](assets/images/readme/example-responsivity.jpg "Example responsivity")
 
 ## Table of Contents
 1. [**UX**](#ux)
